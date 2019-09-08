@@ -11,7 +11,7 @@
   end
 
    def kind
-    if invalid_triangle?
+    if sides.any? { |side| side <= 0 } || sides[0] + sides[1] <= sides[2]
       begin
       raise TriangleError
       rescue TriangleError => error
