@@ -12,6 +12,7 @@
 
    def kind
     if invalid_triangle?
+      begin
       raise TriangleError
     elsif sides.uniq.length == 1
       :equilateral
