@@ -33,6 +33,6 @@ end
 
  class TriangleError < StandardError
   def message
-    "That's no triangle. Of that I'm sure."
+    "Not a Triangle"
   end
 end
