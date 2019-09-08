@@ -31,7 +31,7 @@
   end
 end
 
- class TriangleError < StandardError
+ class TriangleError < NameError
   def message
     "Not a Triangle"
   end
