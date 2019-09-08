@@ -9,11 +9,6 @@
     @opposite = opposite
     @sides = [hypotenuse, adjacent, opposite].sort
   end
-  
-   def invalid_triangle?
-    sides.any? { |side| side <= 0 } || sides[0] + sides[1] <= sides[2]
-  end
-end
 
    def kind
     if invalid_triangle?
@@ -31,7 +26,10 @@ end
     end
   end
 
-
+   def invalid_triangle?
+    sides.any? { |side| side <= 0 } || sides[0] + sides[1] <= sides[2]
+  end
+end
 
  class TriangleError < StandardError
   def message
