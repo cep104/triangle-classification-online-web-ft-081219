@@ -1,38 +1,42 @@
 
 
-	class Triangle 
-	  attr_reader :hypotenuse, :adjacent, :opposite, :sides
-
-   def initialize(hypotenuse, adjacent, opposite)
-    @hypotenuse = hypotenuse
-    @adjacent = adjacent
-    @opposite = opposite
-    @sides = [hypotenuse, adjacent, opposite].sort
+require 'pry'
+class Triangle
+  def initialize(side_1, side_2, side_3)
+    @triangle_sides = []
+    @triangle_sides << side_1
+    @triangle_sides << side_2
+    @triangle_sides << side_3
   end
 
-   def kind
-    if invalid_triangle?
-      begin
-      raise TriangleError
-      rescue TriangleError => error
-          puts error.message
-        end
-    elsif sides.uniq.length == 1
-      :equilateral
-    elsif sides.uniq.length == 2
-      :isosceles
+  def valid?
+    sum_one_two = @triangle_sides[0] + @triangle_sides[1]
+    sum_one_three = @triangle_sides[0] + @triangle_sides[2]
+    sum_two_three = @triangle_sides[1] + @triangle_sides[2]
+
+    if (@triangle_sides.none? {|side| side <= 0}) &&
+      (sum_one_two > @triangle_sides[2] && sum_one_three > @triangle_sides[1] && sum_two_three > @triangle_sides[0])
+      return true
     else
-      :scalene
+      return false
     end
   end
 
-   def invalid_triangle?
-    sides.any? { |side| side <= 0 } || sides[0] + sides[1] <= sides[2]
+  def kind
+    if valid?
+      if @triangle_sides.uniq.length == 1
+        return :equilateral
+      elsif @triangle_sides.uniq.length == 2
+        return :isosceles
+      else
+        return :scalene
+      end
+    else
+      raise TriangleError
+    end
   end
 end
 
- class TriangleError < StandardError
-  def message
-    "Not a Triangle"
-  end
+class TriangleError < StandardError
+
 end
