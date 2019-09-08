@@ -16,6 +16,7 @@
       raise TriangleError
       rescue TriangleError => error
           puts error.message
+        end
     elsif sides.uniq.length == 1
       :equilateral
     elsif sides.uniq.length == 2
