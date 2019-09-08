@@ -23,7 +23,7 @@
   end
 
    def invalid_triangle?
-    sides.any? { |side| side <= 0 } || sides[0] sides[1] <= sides[2]
+    sides.any? { |side| side <= 0 } || sides[0] + sides[1] <= sides[2]
   end
 end
 
